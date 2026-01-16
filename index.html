@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haroun Moussa | Full Stack Developer</title>
+    <meta name="description" content="Portfolio – Full Stack MERN Developer (Web & Mobile) with AI/ML experience." />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070a;
+            --card: rgba(18, 26, 51, 0.6);
+            --text: #f0f2ff;
+            --muted: #94a3b8;
+            --accent: #7aa2f7;
+            --accent2: #2ac3de;
+            --accent-rgb: 122, 162, 247;
+            --border: rgba(255, 255, 255, .08);
+            --shadow: 0 20px 50px rgba(0, 0, 0, .5);
+            --primary-gradient: linear-gradient(135deg, #7aa2f7, #2ac3de);
+        }
+
+        .light {
+            --bg: #f8fafc;
+            --card: rgba(255, 255, 255, 0.8);
+            --text: #0f172a;
+            --muted: #64748b;
+            --accent: #2563eb;
+            --accent2: #0ea5e9;
+            --accent-rgb: 37, 99, 235;
+            --border: rgba(0, 0, 0, .08);
+            --shadow: 0 20px 40px rgba(0, 0, 0, .1);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Decoration */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            filter: blur(80px);
+            opacity: 0.6;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .blob1 {
+            width: 500px;
+            height: 500px;
+            top: -100px;
+            left: -100px;
+            background: rgba(var(--accent-rgb), 0.15);
+            animation: float 20s infinite alternate;
+        }
+
+        .blob2 {
+            width: 400px;
+            height: 400px;
+            bottom: -100px;
+            right: -100px;
+            background: rgba(42, 195, 222, 0.15);
+            animation: float 25s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(100px, 50px) scale(1.1);
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            background: rgba(var(--bg), 0.7);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.5);
+        }
+
+        .links {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .links a {
+            padding: 8px 16px;
+            border-radius: 12px;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .links a:hover {
+            background: rgba(var(--accent-rgb), 0.1);
+            color: var(--accent)
+        }
+
+        @media (max-width: 768px) {
+            .links a {
+                display: none;
+            }
+
+            .links a.active-mobile {
+                display: block;
+            }
+        }
+
+        .btn {
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .05);
+            color: var(--text);
+            padding: 12px 24px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .btn.primary {
+            border: none;
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 10px 20px rgba(var(--accent-rgb), 0.2);
+        }
+
+        .btn.primary:hover {
+            box-shadow: 0 15px 30px rgba(var(--accent-rgb), 0.4);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 80px
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width:900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image-container {
+                order: -1;
+                margin-bottom: 40px;
+            }
+
+            .profile-frame {
+                width: 280px;
+                height: 350px;
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 360px;
+            height: 460px;
+            /* Taller for better visibility */
+            padding: 12px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            /* Stronger shadow */
+            transform: rotate(2deg);
+            transition: all 0.5s ease;
+        }
+
+        .profile-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 40px 80px rgba(var(--accent-rgb), 0.2);
+            border-color: var(--accent);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            /* Focus on face */
+            border-radius: 30px;
+            background: #1e293b;
+            filter: contrast(1.1);
+            /* Slight pop */
+        }
+
+        .profile-frame::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 45px;
+            background: var(--primary-gradient);
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(15px);
+        }
+
+        .card {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(var(--accent-rgb), 0.3);
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            margin: 0 0 20px;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width:520px) {
+            h1 {
+                font-size: 40px
+            }
+        }
+
+        .sub {
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin: 0 0 30px;
+            max-width: 600px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 24px
+        }
+
+        .badge {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            background: rgba(var(--accent-rgb), 0.1);
+        }
+
+        .section {
+            padding: 60px 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            margin: 0 0 30px;
+            font-size: 32px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section h2::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px
+        }
+
+        @media (max-width:900px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 0 10px;
+            color: var(--text);
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .pill {
+            padding: 8px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .hr {
+            height: 1px;
+            background: var(--border);
+            margin: 20px 0
+        }
+
+        .kpi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px
+        }
+
+        .kpi .card {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .03);
+            color: var(--text);
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            background: rgba(var(--accent-rgb), 0.05);
+        }
+
+        .footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <div class="brand">
+                <span class="dot"></span>
+                <span>Haroun Moussa</span>
+            </div>
+            <div class="links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <button class="btn" id="themeBtn" style="padding: 8px 12px; border-radius: 10px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Architecting <span class="gradient-text">Intelligent</span> & Scalable Systems</h1>
+                    <p class="sub">
+                        Hi, I'm <strong style="color:var(--text)">Haroun Moussa</strong>.
+                        Second-year Computer Science Engineering student at <strong>ENISo</strong> and Project Manager
+                        at <strong>JEENISO</strong>.
+                        Passionate about <strong>Web & Mobile Dev</strong>, <strong>Blockchain</strong>, and
+                        <strong>AI/ML</strong>.
+                        Transforming complex problems into efficient, scalable solutions.
+                    </p>
+
+                    <div class="row">
+                        <a class="btn primary" href="#contact">Let's Talk</a>
+                        <a class="btn" href="CV.pdf" download>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" style="margin-right:0px;">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            CV
+                        </a>
+                        <a class="btn" href="#projects">Projects</a>
+                    </div>
+
+                    <div class="badges">
+                        <span class="badge">Full Stack</span>
+                        <span class="badge">Mobile Dev</span>
+                        <span class="badge">Blockchain</span>
+                        <span class="badge">AI & Deep Learning</span>
+                    </div>
+                </div>
+
+                <div class="hero-image-container">
+                    <div class="profile-frame">
+                        <img src="haroun.jpg" alt="Haroun Moussa" class="profile-img"
+                            onerror="this.src='https://ui-avatars.com/api/?name=Haroun+Moussa&background=7aa2f7&color=fff&size=512'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView()">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- QUICK INFO / METRICS -->
+        <section class="section">
+            <div class="grid">
+                <div class="card">
+                    <p class="item-title">Location</p>
+                    <p class="muted">📍 Sousse, Tunisia</p>
+                </div>
+                <div class="card">
+                    <p class="item-title">Education</p>
+                    <p class="muted">🎓 Engineering Degree @ ENISo</p>
+                </div>
+                <div class="card">
+                    <p class="item-title">Current Role</p>
+                    <p class="muted">🚀 Project Manager @ JEENISO</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+            <h2>About Me</h2>
+            <div class="card">
+                <p style="margin:0; font-size: 1.15rem; color: var(--muted); line-height: 1.8;">
+                    I am a second-year Computer Science Engineering student at <strong
+                        style="color:var(--text)">ENISo</strong> and Project Manager at <strong
+                        style="color:var(--text)">Junior Entreprise ENISo</strong>.
+                    Passionate about Web and Mobile development, Blockchain, Internet of Things, Artificial
+                    Intelligence, and Machine Learning.
+                    I have solid hands-on experience gained through hackathons, academic, and professional projects.
+                    Skilled in project management, technical coordination, and problem-solving.
+                </p>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="section" id="experience">
+            <h2>Experience</h2>
+            <div class="card" style="margin-bottom: 20px;">
+                <div
+                    style="display:flex; justify-content:space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap;">
+                    <p class="item-title" style="margin:0">Project Manager</p>
+                    <span style="font-size: 0.9rem; color: var(--accent); font-weight: 600;">June 2025 - Present</span>
+                </div>
+                <p style="color: var(--accent); font-weight: 500; margin-bottom: 15px;">Junior Enterprise ENISo
+                    (JEENISO)</p>
+                <p class="muted" style="margin:0">
+                    Overseeing technical and organizational projects by defining specifications, coordinating
+                    multidisciplinary teams,
+                    and managing timelines using the Scrum methodology. Strengthening leadership and communication
+                    skills.
+                </p>
+            </div>
+
+            <div class="card">
+                <div
+                    style="display:flex; justify-content:space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap;">
+                    <p class="item-title" style="margin:0">Software Engineering Intern</p>
+                    <span style="font-size: 0.9rem; color: var(--accent); font-weight: 600;">June 2025 - Aug 2025</span>
+                </div>
+                <p style="color: var(--accent); font-weight: 500; margin-bottom: 15px;">Core Techs Solutions</p>
+                <p class="muted" style="margin:0">
+                    Developed a mobile application for vehicle tracking with real-time data visualization.
+                    Worked on hash table based projects using Angular, Spring Boot, Java, and PostgreSQL.
+                </p>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="section" id="skills">
+            <h2>Technical Stack</h2>
+            <div class="grid">
+                <div class="card">
+                    <div
+                        style="margin-bottom: 15px; background: rgba(var(--accent-rgb), 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <p class="item-title">App Dev</p>
+                    <p class="muted small" style="margin-bottom: 20px">Web & Mobile Frameworks</p>
+                    <div class="row">
+                        <span class="pill">React</span><span class="pill">React Native</span>
+                        <span class="pill">Angular</span><span class="pill">Spring Boot</span>
+                        <span class="pill">Node.js</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div
+                        style="margin-bottom: 15px; background: rgba(42, 195, 222, 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #2ac3de;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <p class="item-title">AI & Data</p>
+                    <p class="muted small" style="margin-bottom: 20px">Machine Learning & Optimization</p>
+                    <div class="row">
+                        <span class="pill">TensorFlow</span><span class="pill">Scikit-learn</span>
+                        <span class="pill">OpenCV</span><span class="pill">Genetic Algos</span>
+                        <span class="pill">Python</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div
+                        style="margin-bottom: 15px; background: rgba(139, 92, 246, 0.1); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #8b5cf6;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                        </svg>
+                    </div>
+                    <p class="item-title">Blockchain</p>
+                    <p class="muted small" style="margin-bottom: 20px">Web3 & Smart Contracts</p>
+                    <div class="row">
+                        <span class="pill">Solidity</span><span class="pill">Web3.js</span>
+                        <span class="pill">Ethers.js</span><span class="pill">Smart Contracts</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="section" id="projects">
+            <h2>Featured Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <div
+                        style="height: 180px; background: rgba(0,0,0,0.2); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                        <div style="position: absolute; inset: 0; background: var(--primary-gradient); opacity: 0.1;">
+                        </div>
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1" style="opacity: 0.3;">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <p class="item-title">Cryptowallet - Web3 Mobile App</p>
+                    <p class="muted small" style="margin-bottom: 15px">
+                        Non-custodial mobile wallet for "Nexora" private blockchain. Features multi-account support,
+                        AES-256 local encryption, and offline transaction signing.
+                    </p>
+                    <div class="row">
+                        <span class="badge" style="font-size: 10px;">React Native</span>
+                        <span class="badge" style="font-size: 10px;">Blockchain</span>
+                        <span class="badge" style="font-size: 10px;">Ethers.js</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div
+                        style="height: 180px; background: rgba(0,0,0,0.2); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                        <div
+                            style="position: absolute; inset: 0; background: linear-gradient(135deg, #2ac3de, #7aa2f7); opacity: 0.1;">
+                        </div>
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1" style="opacity: 0.3;">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <p class="item-title">Smart Waste Sorting Bin</p>
+                    <p class="muted small" style="margin-bottom: 15px">
+                        Intelligent system classifying waste into 7 categories using YOLOv8 & ResNet50. Deployed on
+                        Raspberry Pi 4 with edge inference.
+                    </p>
+                    <div class="row">
+                        <span class="badge" style="font-size: 10px;">Python</span>
+                        <span class="badge" style="font-size: 10px;">RPi 4</span>
+                        <span class="badge" style="font-size: 10px;">Computer Vision</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div
+                        style="height: 180px; background: rgba(0,0,0,0.2); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                        <div style="position: absolute; inset: 0; background: var(--card); opacity: 0.1;">
+                        </div>
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1" style="opacity: 0.3;">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </div>
+                    <p class="item-title">E-Commerce Web App</p>
+                    <p class="muted small" style="margin-bottom: 15px">
+                        Full-stack MERN application. Features JWT authentication with role-based access, RESTful APIs,
+                        and responsive design.
+                    </p>
+                    <div class="row">
+                        <span class="badge" style="font-size: 10px;">MongoDB</span>
+                        <span class="badge" style="font-size: 10px;">Express</span>
+                        <span class="badge" style="font-size: 10px;">React</span>
+                        <span class="badge" style="font-size: 10px;">Node.js</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div
+                        style="height: 180px; background: rgba(0,0,0,0.2); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                        <div style="position: absolute; inset: 0; opacity: 0.1;">
+                        </div>
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1" style="opacity: 0.3;">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <p class="item-title">Advanced Algorithmics (MOGA)</p>
+                    <p class="muted small" style="margin-bottom: 15px">
+                        Multi-Objective Optimization for Random Forest tuning using NSGA-II genetic algorithm.
+                    </p>
+                    <div class="row">
+                        <span class="badge" style="font-size: 10px;">Python</span>
+                        <span class="badge" style="font-size: 10px;">Scikit-learn</span>
+                        <span class="badge" style="font-size: 10px;">Genetics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="section" id="education">
+            <h2>Education</h2>
+            <div class="grid">
+                <div class="card">
+                    <p class="item-title">Engineering Degree</p>
+                    <p class="muted small">Applied Computer Science</p>
+                    <p style="margin-top:10px; font-size:0.9rem; color:var(--accent);">2024 - Present</p>
+                    <p class="small">National Engineering School of Sousse (ENISo)</p>
+                </div>
+                <div class="card">
+                    <p class="item-title">Pre-Engineering</p>
+                    <p class="muted small">Mathematics & Physics</p>
+                    <p style="margin-top:10px; font-size:0.9rem; color:var(--accent);">2022 - 2024</p>
+                    <p class="small">Prep. Institute of Kairouan</p>
+                </div>
+                <div class="card">
+                    <p class="item-title">Baccalaureate</p>
+                    <p class="muted small">Mathematics</p>
+                    <p style="margin-top:10px; font-size:0.9rem; color:var(--accent);">2022</p>
+                    <p class="small">Farhat Hached High School</p>
+                </div>
+            </div>
+            <div style="margin-top: 30px;">
+                <h3 style="color: var(--muted); font-size: 1.2rem; margin-bottom: 20px;">Certifications</h3>
+                <div class="row">
+                    <div class="pill" style="border-color: #76b900;">NVIDIA DLI: Deep Learning Fundamentals</div>
+                    <div class="pill" style="border-color: #76b900;">NVIDIA DLI: Data Parallelism (Multi-GPU)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="card">
+                    <p class="item-title">Send a message</p>
+                    <form id="contactForm">
+                        <div style="margin-bottom: 15px;">
+                            <label class="small muted" style="display: block; margin-bottom: 8px;">Your email</label>
+                            <input id="fromEmail" type="email" placeholder="name@example.com" required />
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label class="small muted" style="display: block; margin-bottom: 8px;">Message</label>
+                            <textarea id="message" placeholder="Hi Haroun, let's work on something great..."
+                                required></textarea>
+                        </div>
+
+                        <button class="btn primary" type="submit" style="width: 100%; justify-content: center;">Send
+                            Message</button>
+                    </form>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="card">
+                        <p class="item-title">Contact Details</p>
+                        <p class="muted" style="margin:0">
+                            <span style="display: block; margin-bottom: 10px;">📧 <a
+                                    href="mailto:haroun.moussa@eniso.u-sousse.tn">haroun.moussa@eniso.u-sousse.tn</a></span>
+                            <span style="display: block; margin-bottom: 10px;">🔗 <a
+                                    href="https://www.linkedin.com/in/harounmoussa" target="_blank"
+                                    rel="noreferrer">LinkedIn Profile</a></span>
+                            <span style="display: block;">📍 Tunisia / Available Anywhere</span>
+                        </p>
+                    </div>
+                    <div class="card" style="flex-grow: 1; background: var(--primary-gradient); color: white;">
+                        <p class="item-title" style="color: white">Freelance Available</p>
+                        <p style="opacity: 0.9;">I'm currently open to freelance opportunities and part-time positions.
+                            Let's build something amazing together!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© <span id="year"></span> Haroun Moussa • Crafted with passion and code.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Theme toggle logic (keeping it simple)
+        const themeBtn = document.getElementById("themeBtn");
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") document.documentElement.classList.add("light");
+
+        themeBtn.addEventListener("click", () => {
+            document.documentElement.classList.toggle("light");
+            localStorage.setItem("theme", document.documentElement.classList.contains("light") ? "light" : "dark");
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Contact form => mailto
+        document.getElementById("contactForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const fromEmail = document.getElementById("fromEmail").value.trim();
+            const msg = document.getElementById("message").value.trim();
+            const to = "harounmoussa570@gmail.com";
+            const subject = encodeURIComponent("Portfolio contact");
+            const body = encodeURIComponent(`From: ${fromEmail}\n\n${msg}`);
+            window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+        });
+
+        // Navigation background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.padding = '5px 0';
+                nav.style.background = 'rgba(11, 16, 32, 0.9)';
+            } else {
+                nav.style.padding = '0';
+                nav.style.background = 'rgba(5, 7, 10, 0.7)';
+            }
+        });
+    </script>
+</body>
+
+</html>
